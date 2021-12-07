@@ -16,7 +16,6 @@ int cutting(int length, int K, int N, vector<long long> k) {
 	}
 	if (count >= N) return 1;
 	else return 0;
-
 }
 
 int main() {
@@ -38,7 +37,7 @@ int main() {
 			if (answer < mid) { //결과가 중간값보다 작을 때
 				answer = mid;
 			}
-			left = mid + 1;
+			left = mid + 1; //항상
 		}
 		else { //안되면 mid 값을 줄여서 해봐야 함
 			right = mid - 1;
