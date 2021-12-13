@@ -4,6 +4,7 @@
 #include <string>
 #include <cstring>
 
+
 typedef struct Node {
 	Node *next; //다음 노드 주소 저장할 포인터
 	int data;
