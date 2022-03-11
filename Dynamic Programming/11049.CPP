@@ -11,7 +11,7 @@ using namespace std;
 
 int dp[501][501] = { 0 };
 
-int main() {
+int main() {.
 
     int N;
     int m[501][2];
