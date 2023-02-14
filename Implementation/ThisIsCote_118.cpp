@@ -56,8 +56,8 @@ int main() {
 			continue;
 		}
 		else if(turnCnt == 4) {
-			nx = dx[dir] + x;
-			ny = dx[dir] + y;
+			nx = x - dx[dir];
+			ny = x - dx[dir];
 			if (map[nx][ny]==1) break; //바다면 끝
 			x = nx;
 			y = ny;
