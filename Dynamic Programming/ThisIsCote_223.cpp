@@ -23,7 +23,7 @@ int main() {
 	//dp[3] = dp[2] + dp[1] * 2;
 
 	for (i = 3; i <= N; i++) {
-		dp[i] = dp[i - 1] + dp[i - 2] * 2;
+		dp[i] = dp[i - 1] + dp[i - 2] * 2 % 796796;
 	}
 	printf("%d", dp[N]);
 }
