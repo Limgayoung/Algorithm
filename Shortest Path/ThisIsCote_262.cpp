@@ -33,10 +33,12 @@ void dijk(int start) {//각 n까지의 최소 시간을 다익스트라를 통�
 		for (i = 0; i < g[nowNode].size(); i++) { //연결된 모든 노드 탐색
 			int nextNode = g[nowNode][i].first;
 			int cost = g[nowNode][i].second + nowTime; //다음 노드까지 걸리는 시간은 nowNode에서 다음 노드까지 걸리는 시간 + nowNode까지 걸린 시간
-			if (cost < dist[nextNode]) dist[nextNode] = cost; //nowNode를 거쳐서 nextNode로 가는 시간 < C에서 바로 nextNode로 가는 시간 인 경우 dist값 수정
+			if (cost < dist[nextNode]) {//nowNode를 거쳐서 nextNode로 가는 시간 < C에서 바로 nextNode로 가는 시간 인 경우 dist값 수정
+				dist[nextNode] = cost; 
+				pq.push(make_pair(dist[nextNode], nextNode));
+			}
 			//printf("nowNode: %d nextNode: %d cost: %d dist[nextNode]: %d\n", nowNode, nextNode, cost, dist[nextNode]);
 
-			pq.push(make_pair(dist[nextNode], nextNode));
 		}
 	}
 
