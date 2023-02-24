@@ -1,59 +1,50 @@
 #define _CRT_SECURE_NO_WARNINGS
-#include <iostream>
+
 #include <stdio.h>
-#include <algorithm>
 #include <stdlib.h>
+#include <algorithm>
 #include <vector>
+#include <tuple>
+#include <queue>
+
 
 using namespace std;
 
+
+
 int main() {
+	char S[21];
+	int i;
+	int sum = 0;
+	int num;
 
-    char s[21];
-    int size;
-    int num1,num2;
-    long long answer = 0;
-    int t=1;
+	scanf("%s", S);
 
-    vector<int> v;
+	sum = S[0]-'0';
 
-    scanf("%s", s);
+	for (i = 0; i < strlen(S)-1;  i++) {
+		num = S[i+1] - '0';
+		//printf("sum: %d  num: %d\n", sum, num);
+		if (sum == 0 || sum == 1) { //초기에 sum이 0,1이면 +
+			sum += num;
+		}
 
-    size = strlen(s);
+		else if (num == 0 || num == 1) { //num이 0,1 이면 +
+			sum += num;
+		}
+		else {
+			sum *= num;
+		}
+	}
 
-    for (int i = 0; i < size; i++) {
-        int num = s[i] - '0';
+	printf("%d", sum);
 
-        if (num != 0) {
-            v.push_back(num);
-        }
-    }
-
-    for (int i = 0; i < v.size(); i++) {
-        int num = v[i];         
-
-        if (num == 1) {
-            if (i + 1 < v.size()) { //다음 수가 있을 때
-                v[i + 1] = v[i + 1]++;
-                if (i == 0) {
-                    answer = 1;
-                }
-            }
-            else {
-                answer += v[i];
-            }
-        }
-        else {
-            if (i == 0) { //맨 처음 수가 1이 아닌고 맨 앞일 때
-                answer = 1;
-            }
-            answer *= v[i];
-        }
-
-        
-    }
-
-    printf("%lld", answer);
-    
-    return 0;
 }
+
+
+
+/*
+02984
+
+567
+*/
