@@ -5,19 +5,6 @@
 
 using namespace std;
 
-vector<vector<int>> rotation(vector<vector<int>> arr, int N) { //90도 회전
-	vector<vector<int>> result(N, vector<int>(N));
-
-	for (int i = 0; i < N; i++) {
-		for (int j = 0; j < N; j++) {
-			result[i][j] = arr[N-j-1][i];
-		}
-	}
-
-	return result;
-}
-
-
 int main(int argc, char** argv)
 {
 	int test_case;
