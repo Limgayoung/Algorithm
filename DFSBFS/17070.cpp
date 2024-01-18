@@ -6,11 +6,6 @@ using namespace std;
 int N;
 int map[20][20];
 
-//int visit[3][20][20] = { 0 }; //방향, 좌표
-//int visit[20][20] = {0};
-//y가 가로 x가 세로
-
-//세로 가로 대각선
 //가로 세로 대각선
 int dx[3] = { 0,1,1 };
 int dy[3] = { 1,0,1 };
