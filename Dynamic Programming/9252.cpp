@@ -66,18 +66,15 @@ int main() {
 
 	//테두리 dp 초기화
 	if (A[0] == B[0]) dp[0][0] = 1;
-	if (lengthA > 1) {
-		for (int i = 1; i < lengthA; i++) {
-			if (A[i] == B[0]) dp[i][0] = 1;
-			dp[i][0] = max(dp[i][0], dp[i - 1][0]);
-		}
+	for (int i = 1; i < lengthA; i++) {
+		if (A[i] == B[0]) dp[i][0] = 1;
+		dp[i][0] = max(dp[i][0], dp[i - 1][0]);
 	}
-	if (lengthB > 1) {
-		for (int i = 1; i < lengthB; i++) {
-			if (A[0] == B[i]) dp[0][i] = 1;
-			dp[0][i] = max(dp[0][i], dp[0][i - 1]);
-		}
+	for (int i = 1; i < lengthB; i++) {
+		if (A[0] == B[i]) dp[0][i] = 1;
+		dp[0][i] = max(dp[0][i], dp[0][i - 1]);
 	}
+	
 	
 	//나머지 dp 계산
 	for (int i = 1; i < lengthA; i++) {
@@ -95,12 +92,6 @@ int main() {
 
 	//LCS 문자열 찾기
 	//위, 왼쪽으로 가면서 현재 length 마지막 위치 찾기
-	//왼쪽 방향이면 왼쪽 먼저 검사, 위쪽 방향이면 위쪽 먼저 검사 필요
-	//bool isUp = false;
-	
-
-	//if (lengthA>1 && lengthB>1 && dp[lengthA - 2][lengthB - 1] >= dp[lengthA - 1][lengthB - 2]) isUp = true;
-
 	string str = "";
 	int nowLength = dp[lengthA - 1][lengthB - 1];
 	int x = lengthA - 1;
