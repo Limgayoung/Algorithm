@@ -28,7 +28,6 @@ using namespace std;
 typedef struct Node {
 	int a; //삭제할 정점
 	int b; //연결된 정점
-	int indexB; //연결된 정점 index
 	int level; //레벨
 }node;
 
@@ -37,12 +36,11 @@ vector<vector<int>> G;
 vector<int> in, out;
 queue<node> leaf;
 vector<bool> visit;
-vector<int> answer;
 
 void initLeaf() {
 	for (int i = 0; i < N; i++) {
 		if (in[i] == 1 && out[i] == 1) {
-			leaf.push({ i,G[i][0], 0, 0 });
+			leaf.push({ i,G[i][0], 0 });
 			//printf("%d ", i);
 		}
 	}
@@ -59,7 +57,6 @@ void deleteLeaf() {
 
 		int a = nowNode.a;
 		int b = nowNode.b;
-		int indexB = nowNode.indexB;
 		int level = nowNode.level;
 
 		if (beforeLevel != level) { //다음 레벨로 넘어감
@@ -70,15 +67,10 @@ void deleteLeaf() {
 			beforeLevel = level;
 		}
 
-		if (isDone) {			
-			answer.push_back(a);
-		}
-
 		//printf("%d %d %d\n", a, b, level);
 
 		leaf.pop();
 
-		G[a][indexB] = -1;
 		visit[a] = true;
 
 		in[a]--;
@@ -90,12 +82,12 @@ void deleteLeaf() {
 			int connectB;
 			int i;
 			for (i = 0; i < G[b].size(); i++) {
-				if (G[b][i] != -1) {
+				if (!visit[G[b][i]]) {
 					connectB = G[b][i];
 					break;
 				}
 			}
-			leaf.push({ b,connectB, i, level + 1 });
+			leaf.push({ b,connectB, level + 1 });
 		}
 	}
 }
