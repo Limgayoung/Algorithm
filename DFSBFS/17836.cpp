@@ -17,7 +17,6 @@ T <= 10000
 벽을 뚫을 수 없음
 그람 찾으면 벽 뚫고 가기 가능
 1. 그람 찾지 않고 공주에게 바로 가는 경우
-  - 중간에 그람이 나온다면 벽 뚫기 가능
 2. 그람부터 찾고 공주에게 가는 경우
 
 성공 시 최단 시간 구하기
@@ -63,6 +62,9 @@ int getMinTime(int destX, int destY) {
 			return cnt;
 		}
 
+		//이 부분이 없어도 통과된다. 그렇다면 hasGram의 유무로 벽을 뚫을 수 있다는 코드를 추가했을 뿐인데 어떻게 통과된거지? 실제로는 hasGram이 항상 false였을텐데..?
+		if (x == gram.first && y == gram.second) hasGram = true;
+
 		for (int i = 0; i < 4; i++) {
 			int nx = x + dx[i];
 			int ny = y + dy[i];
@@ -70,7 +72,7 @@ int getMinTime(int destX, int destY) {
 			if (isInside(nx, ny) && !visit[nx][ny]) {
 				if (!hasGram && arr[nx][ny] == 1) continue;
 				visit[nx][ny] = true;
-				q.push({ nx,ny,cnt + 1 });
+				q.push({ nx,ny,cnt + 1, hasGram });
 			}
 		}
 	}	
